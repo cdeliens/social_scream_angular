@@ -1,4 +1,4 @@
-function appController($scope) {
+function AppController($scope) {
   $scope.options = [
     {background: "bg1", link: "#", text: "Link 1"},
     {background: "bg2", link: "#", text: "Link 2"},
