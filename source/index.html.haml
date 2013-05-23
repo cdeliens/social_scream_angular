@@ -1,0 +1,11 @@
+.logo
+.content
+  %h1
+    The Photomathon
+  %p
+    Lorem ipsum Nulla cillum cillum eu elit Excepteur pariatur ut culpa dolore veniam laborum et sit et ad dolor voluptate aliqua nisi fugiat occaecat id ad amet velit ex qui incididunt consequat.
+  %ul.nav.nav-pills.nav-stacked.menu
+    %li{ "ng-repeat" => "option in options"}
+      %a{"href" => "{{option.link}}", "ng-click" => "changeBg(option.background)"}
+        %i.icon-search.icon-white
+        {{option.text}}
