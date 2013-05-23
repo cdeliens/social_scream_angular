@@ -1,24 +1,49 @@
+@mixin round-borders
+  -webkit-border-radius: 10px
+  -moz-border-radius: 10px
+  border-radius: 10px
+@mixin opacity
+  -moz-opacity: 0.5
+  opacity: 0.5
+
+@mixin bg_fadein
+  background-image: none
+  -webkit-transition: background-image 0.5s ease
+  -moz-transition: background-image 0.5s ease
+  -o-transition: background-image 0.5s ease
+  -ms-transition: background-image 0.5s ease
+  transition: background-image 0.5s ease
+
+
 @mixin full_background
   background-repeat: no-repeat
   background-size: 100%
+  
+
 body
-  // color: white
+  color: white
+  background-color: #333
   .bg
     width: 100%
     height: 100%
     position: absolute
     z-index: -1
+    @include bg_fadein
 
   .bg1
-    background: url("/images/backgrounds/bg1.jpg")
+    background-image: url("/images/backgrounds/bg1.jpg")
     @include full_background
 
   .bg2
-    background: url("/images/backgrounds/bg2.jpg")
+    background-image: url("/images/backgrounds/bg2.jpg")
     @include full_background
+
+
   
   .logo
-    background: url("/images/logo/logo.png")
+    @include round-borders
+    @include opacity
+    background-color: gray
     background-repeat: no-repeat
     margin-top: 15%
     width: 100%
@@ -33,4 +58,7 @@ body
           background-color: #333
         .icon-white
           margin-right: 5px
+footer
+  position: absolute
+  bottom: 0px
 
