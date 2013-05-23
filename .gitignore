@@ -12,3 +12,20 @@
 
 # Ignore Sass' cache
 /.sass-cache
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.DS_Store
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
