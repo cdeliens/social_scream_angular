@@ -143,6 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  compass
   jasmine
   json
   middleman (~> 3.0.14)

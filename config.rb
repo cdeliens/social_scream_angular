@@ -11,6 +11,7 @@
 #   config.output_style = :compact
 # end
 
+activate :livereload, :grace_period => 0.5
 ###
 # Page options, layouts, aliases and proxies
 ###
@@ -55,7 +56,6 @@ set :images_dir, 'images'
 
 # Build-specific configuration
 configure :build do
-  activate :livereload
   
   # For example, change the Compass output style for deployment
   # activate :minify_css
