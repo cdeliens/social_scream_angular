@@ -1,13 +1,28 @@
-.logo.hidden-tablet.hidden-phone
-.content
-  %h1
-    The Photomathon
-  %p
-    Lorem ipsum Nulla cillum cillum eu elit Excepteur pariatur ut culpa dolore veniam laborum et sit et ad dolor voluptate aliqua nisi fugiat occaecat id ad amet velit ex qui incididunt consequat.
-  %ul.nav.nav-pills.nav-stacked.menu
-    %li{ "ng-repeat" => "option in options"}
-      %a{"href" => "{{option.link}}", "ng-click" => "changeBg(option)"}
-        %i.icon-search.icon-white
-        {{option.text}}
+
+.span4
+  .logo
+  .content
+    
+    
+    %p
+      
+      Lorem ipsum Nulla cillum cillum eu elit Excepteur pariatur ut culpa dolore veniam laborum et sit et ad dolor voluptate aliqua nisi fugiat occaecat id ad amet velit ex qui incididunt consequat.
+
+    %ul.nav.nav-pills.nav-stacked.menu
+      %li{ "ng-repeat" => "option in options"}
+        %a{"href" => "{{option.link}}", "ng-click" => "changeBg(option)"}
+          %i.icon-search.icon-white
+          {{option.text}}
 
 
+.span8
+  .gallery
+    %ul.nav.nav-pills
+      %li{ "ng-repeat" => "photo in photoset.photos"}
+        %img{"src" => "{{photo.large_square}}" }
+    .pagination
+      %a{"href" => "#", "ng-click" => "backPage(photoset)" }
+        back
+      %a{"href" => "#", "ng-click" => "nextPage(photoset)" }
+        next
+        

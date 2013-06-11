@@ -16,21 +16,8 @@
     .bg{"class" => "{{active_background}}"  }
     .container
       .row-fluid
+        = yield
 
-        .span4
-          = yield
-        .span8
-          .gallery
-            %ul.nav.nav-pills
-              %li{ "ng-repeat" => "photo in photoset.photos"}
-                %img{"src" => "{{photo.large_square}}" }
-            .pagination
-              %a{"href" => "#", "ng-click" => "backPage(photoset)" }
-                back
-              %a{"href" => "#", "ng-click" => "nextPage(photoset)" }
-                next
-                
-      
     %footer
       %p 
         cdeliens dev © 2013
