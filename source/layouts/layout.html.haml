@@ -1,27 +1,24 @@
 !!!
-%html{"ng-app" => "photomatonApp"}
+%html{"ng-app" => "CVApp"}
   %head
     %meta{"charset" => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", "content" => "IE=Edge,chrome=1"}
     %meta{"name" => "viewport", "content" => "width=device-width, initial-scale=1.0"}
-    %title= data.page.title || ""
+    %title= ""
     %meta{"name" =>"description", "content" => ""}
-    %script{"src" => "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"}
+    %script{"src" => "http://code.jquery.com/jquery-1.10.0.min.js"}
+    %script{"src" => "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"}
+    %script{"src" => "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"}
     = javascript_include_tag "application"
     = stylesheet_link_tag "application", :media => "all"
 
 
 
-  %body{"class" => page_classes, "ng-controller" =>"AppController"}
-    .bg{"class" => "{{active_background}}"  }
+  %body{"class" => page_classes, "ng-controller" =>"AppCtrl"}
     .container
       .row-fluid
         = yield
 
     %footer
       %p 
-        cdeliens dev © 2013
-    #preload
-      = image_tag "backgrounds/bg1.jpg"
-      = image_tag "backgrounds/bg2.jpg"
-      = image_tag "backgrounds/bg3.jpg"
+        cdeliens dev © 2014
