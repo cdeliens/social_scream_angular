@@ -1,27 +1,18 @@
-app = angular.module("CVApp", ["ngResource"])
+app = angular.module("SocialScreamApp", ["ngResource"])
 
-app.factory "Page", ($q, $http) ->
-  all: ->
+
+app.factory "Twitter", ($q, $http) ->
+  get: (hashtag) ->
     deferred = $q.defer()
-    url = "http://cv-be.dev/pages.json?callback=JSON_CALLBACK"
+    url = "http://cv-be.dev/twitter_services/#{hashtag}.json?callback=JSON_CALLBACK"
     $http.jsonp(url).success (json) ->
       deferred.resolve(json)
     deferred.promise
-  get: (id) ->
-    deferred = $q.defer()
-    url = "http://cv-be.dev/pages/#{id}.json?callback=JSON_CALLBACK"
-    $http.jsonp(url).success (json) ->
-      deferred.resolve(json)
-    deferred.promise    
-    
-        
 
-@AppCtrl = ($scope, Page) ->
-  posts_promise = Page.all()
-  posts_promise.then (data) ->
-    $scope.posts = data
+@AppCtrl = ($scope, Twitter) ->
+  $scope.getMagic = ->
+    Twitter.get($scope.hashtag.entry).then (data) ->
+      $scope.tweets = data
 
-  post_promise = Page.get(3)
-  post_promise.then (data) ->
-   $scope.post = data
+
 

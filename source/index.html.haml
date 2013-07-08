@@ -1,6 +1,18 @@
-.span
-  %h1{ 'ng-repeat' => ' post in posts'}
-    {{post.title}}
-  
-  %h2
-    {{post.title}}
+.span12
+  #admin.span4
+    .row-fluid
+      %h1
+        Enter a tag:
+      %form{ 'ng-submit' => 'getMagic()' }
+        %input{ type: 'text', 'ng-model' => 'hashtag.entry', placeholder: '#costarica'}
+        %br
+        %input.pull-right{ type: 'submit', value: 'Get the Magic!', class: 'btn btn-warning'}
+      %h5{ 'ng-bind' => 'hashtag.entry'}
+      
+
+
+  #main_block
+    %span{ 'ng-repeat' => ' tweet in tweets '}
+      %h1
+        {{tweet.text}}
+    
