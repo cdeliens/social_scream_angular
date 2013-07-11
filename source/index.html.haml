@@ -1,18 +1,41 @@
-.span12
-  #admin.span4
-    .row-fluid
+.modal.hide.fade#admin
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3 Social Scream
+  .modal-body
+    %p 
       %h1
         Enter a tag:
       %form{ 'ng-submit' => 'getMagic()' }
-        %input{ type: 'text', 'ng-model' => 'hashtag.entry', placeholder: '#costarica'}
+        %input{ type: 'text', 'ng-model' => 'tag', placeholder: '#costarica'}
         %br
         %input.pull-right{ type: 'submit', value: 'Get the Magic!', class: 'btn btn-warning'}
-      %h5{ 'ng-bind' => 'hashtag.entry'}
-      
+
+.hide
+  %img{src: 'images/facebook-256-black.png'}
+  %img{src: 'images/twitter-256-black.png'}
+  %img{src: 'images/instagram-256-black.png'}
+
+.reveal
+  .row-fluid
+    .slides
+      %section{ id: "slide_{{$index}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams '}
+        .media
+          %img{ src: '{{scream.media_url}}' }
+        .content
+          %h1
+            {{scream.body}}
+          .owner
+            %img{src: "{{scream.owner_media_url}}" }
+            %h2
+              {{scream.owner}}
+          .provider
+
+  %script{src: "javascripts/vendor/reveal/reveal.js"}
 
 
-  #main_block
-    %span{ 'ng-repeat' => ' tweet in tweets '}
-      %h1
-        {{tweet.text}}
-    
+        
+     
+%footer
+  .tag
+    {{tag}}

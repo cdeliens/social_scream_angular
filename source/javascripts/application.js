@@ -1,2 +1,5 @@
+//= require bootstrap
+//= require bootstrap-modal
 //= require vendor/key_master
-//= require_tree .
+//= require appController
+//= require behavior_bindings
