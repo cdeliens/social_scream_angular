@@ -13,35 +13,38 @@ app.factory "Scream", ($q, $http) ->
     deferred.promise
 
 @AppCtrl = ($scope, Scream) ->
+  $scope.tags = ["25este", "elsteinvorth", "hubasilica", "costarica"]
   $scope.tag = "25este"
-  $scope.marquee_messages = [
-    {
-      id: 1
-      text: "#25este WALL"
-    },
-    {
-      id: 2
-      text: "Posteá a TWITTER ó INSTAGRAM usando el tag #" + $scope.tag
-    }
-  ]
-
+  reload_marquee = ->
+    $scope.marquee_messages = [
+      {
+        id: 1
+        text: "#25este WALL"
+      },
+      {
+        id: 2
+        text: "Posteá a TWITTER ó INSTAGRAM usando el tag #" + $scope.tag
+      }
+    ]
   $scope.getMagic = -> 
-    $scope.reload($scope.tag)
+    $scope.reload()
     admin_modal()
 
   admin_modal = ->
     window.admin_modal()
 
-  $scope.reload = (tag)->
-    Scream.get(tag).then (data) ->
+  $scope.reload = ->
+    Scream.get($scope.tag).then (data) ->
       $scope.screams = {}
-      $scope.screams = data 
+      $scope.screams = data
+      reload_marquee() 
 
   init = (tag)->
     Scream.get(tag).then (data) ->
       $scope.screams = {}
       $scope.screams = data
       $(".marquee").addClass "animation"
+      reload_marquee()
       reveal_init()
  
   reveal_init = ->
@@ -61,7 +64,8 @@ app.factory "Scream", ($q, $http) ->
 
   Reveal.addEventListener "slidechanged", (event) ->
     if Reveal.isLastSlide()
-      $scope.reload($scope.tag)
+      $scope.tag = $scope.tags[Math.floor(Math.random() * $scope.tags.length)]
+      $(".hack").trigger("submit")
 
   Reveal.addEventListener "video", (->
     Reveal.configure autoSlide: 30000
@@ -75,9 +79,9 @@ app.factory "Scream", ($q, $http) ->
     Reveal.configure autoSlide: 7000
   ), false
 
-  Reveal.addEventListener "Scream", (->
-    Reveal.configure autoSlide: 1000
-  ), false
+  # Reveal.addEventListener "Scream", (->
+  #   Reveal.configure autoSlide: 1000
+  # ), false
 
   init($scope.tag)
 

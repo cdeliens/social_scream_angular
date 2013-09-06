@@ -10,7 +10,7 @@
         %input{ type: 'text', 'ng-model' => 'tag', placeholder: '{{tag}}'}
         %br
         %input.pull-right{ type: 'submit', value: 'Get the Magic!', class: 'btn btn-info'}
-
+      %form.hidden.hack{ 'ng-submit' => 'reload()' }
 .hide
   %img{src: 'images/facebook/facebook-64.png'}
   %img{src: 'images/twitter/twitter-64.png'}
@@ -18,6 +18,9 @@
 
 .reveal
   .logo
+  .tag
+    %h1
+      {{tag}}
   .row-fluid
     .slides
       %section{ id: "slide_{{$index}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams ', "data-state" => "{{scream.provider}}"}
@@ -33,7 +36,7 @@
           .provider
       %section{"data-state" => "video"}
         .media
-          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/video/JosemaVideo.mp4", class: "stretch" }
+          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/videos/promo.mp4", class: "stretch" }
 
 
   %script{src: "javascripts/vendor/reveal/reveal.js"}
