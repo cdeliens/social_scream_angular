@@ -1,20 +1,20 @@
 .modal.hide.fade#admin
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3 Social Scream
+    %h3 #WALL by 25este.com
   .modal-body
     %p 
-      %h1
+      %h2
         Enter a tag:
       %form{ 'ng-submit' => 'getMagic()' }
-        %input{ type: 'text', 'ng-model' => 'tag', placeholder: '#costarica'}
+        %input{ type: 'text', 'ng-model' => 'tag', placeholder: '{{tag}}'}
         %br
-        %input.pull-right{ type: 'submit', value: 'Get the Magic!', class: 'btn btn-warning'}
+        %input.pull-right{ type: 'submit', value: 'Get the Magic!', class: 'btn btn-info'}
 
 .hide
-  %img{src: 'images/facebook-256-black.png'}
-  %img{src: 'images/twitter-256-black.png'}
-  %img{src: 'images/instagram-256-black.png'}
+  %img{src: 'images/facebook/facebook-64.png'}
+  %img{src: 'images/twitter/twitter-64.png'}
+  %img{src: 'images/instagram/instagram-64.png'}
 
 .reveal
   .row-fluid
@@ -23,19 +23,23 @@
         .media
           %img{ src: '{{scream.media_url}}' }
         .content
-          %h1
-            {{scream.body}}
+          .message
+            %h1 {{scream.body}}
           .owner
             %img{src: "{{scream.owner_media_url}}" }
             %h2
               {{scream.owner}}
-          .provider
+            .provider
+
 
   %script{src: "javascripts/vendor/reveal/reveal.js"}
-
-
-        
-     
-%footer
-  .tag
-    {{tag}}
+  %ul.control.hide
+    %li.settings{'ng-click' => 'admin_modal()'}
+    %li.fullscreen
+  %footer
+    .row-fluid
+      .container
+      .marquee
+        %p{ 'ng-repeat' => "message in marquee_messages"}
+          %a
+            {{message.text}}

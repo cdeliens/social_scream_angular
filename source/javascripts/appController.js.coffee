@@ -27,26 +27,64 @@ app.factory "Scream", ($q, $http) ->
 
 
 @AppCtrl = ($scope, Scream) ->
+  times_reloaded = 0
   $scope.tag = "costarica"
+
+  admin_modal = ->
+    console.log "modal"
+    window.admin_modal()
+  
+  refresh_marquee = ->
+    $scope.marquee_messages = [
+      {
+        id: 1
+        text: "#WALL por 25este.com"
+      },
+      {
+        id: 2
+        text: "Posteá a TWITTER ó INSTAGRAM usando el tag #" + $scope.tag
+      }
+    ]
+
+  reload = ->
+    times_reloaded = times_reloaded + 1
+    console.log "#{times_reloaded} times reloaded with tag: ##{$scope.tag}" if console
+    Scream.get($scope.tag).then (data) ->
+      $scope.screams = {}
+      $scope.screams = data 
+      refresh_marquee()
+      console.log "Number of screams: #{$scope.screams.length}"
 
   init = (tag)->
     Scream.get(tag).then (data) ->
       $scope.screams = {}
       $scope.screams = data
+      refresh_marquee()
+      $(".marquee").addClass "animation"
       reveal_init()
+      
+
+    
  
   $scope.getMagic = -> 
-    init($scope.tag)
+    reload()
+    admin_modal()
     
-  window.reveal_init = ->
+  reveal_init = ->
       (->
         Reveal.initialize
+          touch: true
           controls: false
           progress: false
           history: true
           loop: true
-          autoSlide: 5000
-          zoom: 1
+          autoSlide: 7000
+          zoom: 10
+
       ).call this
 
+  Reveal.addEventListener "slidechanged", (event) ->
+    reload() if Reveal.isLastSlide()
+
   init($scope.tag)
+

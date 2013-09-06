@@ -8,17 +8,55 @@ body
     position: absolute
     top: 0px
     left: 0px
+footer
+  height: 100px
+  width: 100%
+  position: absolute
+  margin-top: -150px
+  bottom: 0px
+  clear:both 
 
-
+.content
+  font-size: 13em
 .Facebook
   .provider
-    background: url('/images/facebook-256.png')
+    background: url('/images/facebook/facebook-64.png')
 .Twitter
   .provider
-    background: url('/images/twitter-256.png')
+    background: url('/images/twitter/twitter-64.png')
+  .message
+    h1
+      font-size: 0.4em !important
+      line-height: 1em
 .Instagram
+  .media
+    width: 600px
+    height: 600px
+    margin-left: auto
+    margin-right: auto
+
+  .message
+    width: 280px
+    display: block
+    position: absolute
+    right: -130px
+    top: 30px
+    word-wrap: break-word
+    height: 100%
+    overflow: hidden
+
+    h1
+      font-size: 0.2em !important
+      line-height: 1em  
+      position: absolute
+      top: 0px  
   .provider
-    background: url('/images/instagram-256.png')
+    background: url('/images/instagram/instagram-64.png')
+  .owner
+    bottom: -40px !important
+    left: 20px
+
+
 
 .Scream
   
@@ -27,16 +65,49 @@ body
     font-family: 'Roboto Slab', serif
   .media
     img
-      position: absolute
-      left: 0px
-      top: 0px
       z-index: -1
-  .provider
-    position: absolute
-    width: 256px
-    height: 256px
-    right: 0px
-  .owner
 
+
+    
+  .owner
+    position: absolute
+    width: 600px
+    right: 0px
+    bottom: -100px
+
+    .provider
+      width: 64px
+      height: 64px
+      float: right
+    h2
+      float: right
+      margin: 0px 20px 0px 0px
     img
+      float: right
       width: 50px
+.hide
+  opacity: 0.2
+.reveal
+  z-index: 1000
+.control
+  position: absolute
+  top: 0px
+  display: inline-block
+  padding: 10px
+  right: 0px
+  z-index: 2000
+  display: block
+
+
+  li
+    float: left
+    list-style-type: none
+    width: 25px
+    height: 23px
+    margin: 0px 20px 0px 0px
+    cursor: pointer
+
+    &.settings
+      background: url('/images/settings.png')
+    &.fullscreen
+      background: url('/images/fullscreen.png')
