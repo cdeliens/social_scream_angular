@@ -19,7 +19,9 @@
 .reveal
   .logo
   .tag
-    %h1
+    %h1.hashtag.pull-left
+      \#
+    %h1.current_tag.pull-left
       {{tag}}
   .row-fluid
     .slides
@@ -34,9 +36,9 @@
             %h2
               {{scream.owner}}
           .provider
-      %section{"data-state" => "video"}
+      %section{"data-state" => "video", class: "promo hidden"}
         .media
-          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/videos/promo.mp4", class: "stretch" }
+          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/videos/promo.MOV", class: "stretch" }
 
 
   %script{src: "javascripts/vendor/reveal/reveal.js"}

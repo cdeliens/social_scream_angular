@@ -37,7 +37,8 @@ app.factory "Scream", ($q, $http) ->
     Scream.get($scope.tag).then (data) ->
       $scope.screams = {}
       $scope.screams = data
-      reload_marquee() 
+      reload_marquee()
+
 
   init = (tag)->
     Scream.get(tag).then (data) ->
@@ -63,25 +64,29 @@ app.factory "Scream", ($q, $http) ->
       ).call this
 
   Reveal.addEventListener "slidechanged", (event) ->
+    $(".promo").removeClass "hidden"
     if Reveal.isLastSlide()
       $scope.tag = $scope.tags[Math.floor(Math.random() * $scope.tags.length)]
       $(".hack").trigger("submit")
 
   Reveal.addEventListener "video", (->
-    Reveal.configure autoSlide: 30000
+    Reveal.configure 
+      autoSlide: 20000
   ), false
 
   Reveal.addEventListener "Instagram", (->
-    Reveal.configure autoSlide: 4500
+    Reveal.configure 
+      autoSlide: 4500
   ), false
 
   Reveal.addEventListener "Twitter", (->
-    Reveal.configure autoSlide: 7000
+    Reveal.configure 
+      autoSlide: 8000
   ), false
 
-  # Reveal.addEventListener "Scream", (->
-  #   Reveal.configure autoSlide: 1000
-  # ), false
+  Reveal.addEventListener "Scream", (->
+    Reveal.configure autoSlide: 8000
+  ), false
 
   init($scope.tag)
 
