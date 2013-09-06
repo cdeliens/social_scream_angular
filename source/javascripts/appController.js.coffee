@@ -1,44 +1,29 @@
 app = angular.module("SocialScreamApp", ["ngResource"])
 
-
-app.factory "Twitter", ($q, $http) ->
-  get: (hashtag) ->
-    deferred = $q.defer()
-    url = "http://cv-be.dev/twitter_services/#{hashtag}.json?callback=JSON_CALLBACK"
-    $http.jsonp(url).success (json) ->
-      deferred.resolve(json)
-    deferred.promise
-
-app.factory "Instagram", ($q, $http) ->
-  get: (hashtag) ->
-    deferred = $q.defer()
-    url = "http://cv-be.dev/instagram_services/#{hashtag}.json?callback=JSON_CALLBACK"
-    $http.jsonp(url).success (json) ->
-      deferred.resolve(json)
-    deferred.promise
-
 app.factory "Scream", ($q, $http) ->
+  deferred = $q.defer()
   get: (hashtag)->
-    deferred = $q.defer()
     url = "http://deliens-cvbe.herokuapp.com/screams/#{hashtag}.json?callback=JSON_CALLBACK"
-    $http.jsonp(url).success (json) ->
+    $http.jsonp(url).success((json) ->
       deferred.resolve(json)
+    ).error (json) ->
+      alert "error"
     deferred.promise
+
 
 
 @AppCtrl = ($scope, Scream) ->
   times_reloaded = 0
-  $scope.tag = "costarica"
+  $scope.tag = "25este"
 
   admin_modal = ->
-    console.log "modal"
     window.admin_modal()
   
   refresh_marquee = ->
     $scope.marquee_messages = [
       {
         id: 1
-        text: "#WALL por 25este.com"
+        text: "#25este WALL"
       },
       {
         id: 2
@@ -46,28 +31,20 @@ app.factory "Scream", ($q, $http) ->
       }
     ]
 
-  reload = ->
-    times_reloaded = times_reloaded + 1
-    console.log "#{times_reloaded} times reloaded with tag: ##{$scope.tag}" if console
-    Scream.get($scope.tag).then (data) ->
+  reload = (tag)->
+    Scream.get(tag).then (data) ->
       $scope.screams = {}
       $scope.screams = data 
-      refresh_marquee()
-      console.log "Number of screams: #{$scope.screams.length}"
 
   init = (tag)->
     Scream.get(tag).then (data) ->
       $scope.screams = {}
       $scope.screams = data
-      refresh_marquee()
       $(".marquee").addClass "animation"
       reveal_init()
-      
-
-    
  
   $scope.getMagic = -> 
-    reload()
+    reload($scope.tag)
     admin_modal()
     
   reveal_init = ->
@@ -80,11 +57,16 @@ app.factory "Scream", ($q, $http) ->
           loop: true
           autoSlide: 7000
           zoom: 10
+          width: 1024
+          height: 768
+          minScale: 0.2
+          maxScale: 1.0
 
       ).call this
 
   Reveal.addEventListener "slidechanged", (event) ->
-    reload() if Reveal.isLastSlide()
+    if Reveal.isLastSlide()
+      init($scope.tag)
 
   init($scope.tag)
 

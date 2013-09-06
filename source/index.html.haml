@@ -1,7 +1,7 @@
 .modal.hide.fade#admin
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3 #WALL by 25este.com
+    %h3 #25este WALL
   .modal-body
     %p 
       %h2
@@ -17,19 +17,23 @@
   %img{src: 'images/instagram/instagram-64.png'}
 
 .reveal
+  .logo
   .row-fluid
     .slides
-      %section{ id: "slide_{{$index}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams '}
+      %section{ id: "slide_{{$index}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams ', "data-state" => "{{scream.provider}}"}
         .media
           %img{ src: '{{scream.media_url}}' }
         .content
           .message
-            %h1 {{scream.body}}
+            %h1{'ng-bind-html-unsafe' => 'scream.body'}
           .owner
-            %img{src: "{{scream.owner_media_url}}" }
+            %img{'class' => "strech", src: "{{scream.owner_media_url}}" }
             %h2
               {{scream.owner}}
-            .provider
+          .provider
+      %section{"data-state" => "video"}
+        .media
+          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/video/JosemaVideo.mp4", class: "stretch" }
 
 
   %script{src: "javascripts/vendor/reveal/reveal.js"}
@@ -39,6 +43,8 @@
   %footer
     .row-fluid
       .container
+        %p.pull-left
+          {{times_reloaded}}
       .marquee
         %p{ 'ng-repeat' => "message in marquee_messages"}
           %a
