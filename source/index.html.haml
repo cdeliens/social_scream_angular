@@ -19,13 +19,12 @@
 .reveal
   .logo
   .tag
-    %h1.hashtag.pull-left
-      \#
     %h1.current_tag.pull-left
-      {{tag}}
+      {{"#" + tag}}
   .row-fluid
     .slides
-      %section{ id: "slide_{{$index}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams ', "data-state" => "{{scream.provider}}"}
+
+      %section{ id: "slide_{{$index + 3}}", class: '{{scream.provider}}', 'ng-repeat' => ' scream in screams ', "data-state" => "{{scream.provider}}"}
         .media
           %img{ src: '{{scream.media_url}}' }
         .content
@@ -36,9 +35,17 @@
             %h2
               {{scream.owner}}
           .provider
-      %section{"data-state" => "video", class: "promo hidden"}
+      %section{"data-state" => "video", class: "promo"}
         .media
-          %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/videos/promo.MOV", class: "stretch" }
+          #player
+      %section{"data-state" => "Twitter", 'data-state' => 'loading' }
+        .content
+          .message
+            %h1
+              Postea tus Tweets o fotos en Instagram con el hashtag {{"#" + tag}}
+
+          / %iframe{class: "stretch", :allowfullscreen => "", :frameborder => "0", :height => "675", :src => "//www.youtube.com/embed/Mm39nVbU1NM?autoplay=1&loop=1&showinfo=0&rel=0", :width => "900"}
+          / %video{"data-ignore" => "true", "data-autoplay" => "true", src: "/videos/promo.MOV", class: "stretch" }
 
 
   %script{src: "javascripts/vendor/reveal/reveal.js"}

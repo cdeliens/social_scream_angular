@@ -13,7 +13,7 @@ app.factory "Scream", ($q, $http) ->
     deferred.promise
 
 @AppCtrl = ($scope, Scream) ->
-  $scope.tags = ["25este", "elsteinvorth", "hubasilica", "costarica"]
+  $scope.tags = ["25este", "elsteinvorth", "hubasilica", "costarica", "aquinohaynieve"]
   $scope.tag = "25este"
   reload_marquee = ->
     $scope.marquee_messages = [
@@ -59,19 +59,27 @@ app.factory "Scream", ($q, $http) ->
           zoom: 10
           width: 1024
           height: 768
-          minScale: 0.2
-          maxScale: 1.0
+          # minScale: 0.2
+          # maxScale: 1.0
       ).call this
 
-  Reveal.addEventListener "slidechanged", (event) ->
-    $(".promo").removeClass "hidden"
-    if Reveal.isLastSlide()
-      $scope.tag = $scope.tags[Math.floor(Math.random() * $scope.tags.length)]
-      $(".hack").trigger("submit")
+  # Reveal.addEventListener "slidechanged", (event) ->
+  #   if Reveal.isLastSlide()
+  #     $scope.tag = $scope.tags[Math.floor(Math.random() * $scope.tags.length)]
+  #     $(".hack").trigger("submit")
+
+  Reveal.addEventListener "loading", (->
+    $scope.tag = $scope.tags[Math.floor(Math.random() * $scope.tags.length)]
+    $(".hack").trigger("submit")
+    player.stopVideo()
+    Reveal.configure 
+      autoSlide: 4000
+  ), false
 
   Reveal.addEventListener "video", (->
+    player.playVideo()
     Reveal.configure 
-      autoSlide: 20000
+      autoSlide: 0
   ), false
 
   Reveal.addEventListener "Instagram", (->

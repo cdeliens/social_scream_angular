@@ -4,11 +4,13 @@
     %meta{"charset" => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", "content" => "IE=Edge,chrome=1"}
     %meta{"name" => "viewport", "content" => "width=device-width, initial-scale=1.0"}
-    %title= ""
+    %title
+      \#25este WALL
     %meta{"name" =>"description", "content" => ""}
     %script{"src" => "http://code.jquery.com/jquery-1.10.0.min.js"}
     %script{"src" => "http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"}
     %script{"src" => "http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-resource.min.js"}
+    
     %link{:href => "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100", :rel => "stylesheet", :type => "text/css"}/
     = javascript_include_tag "application"
     = stylesheet_link_tag "application", :media => "all"
@@ -19,3 +21,35 @@
     .light
     = yield
 
+    :javascript
+        //Load player api asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var done = false;
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+              height: '675',
+              width: '900',
+              videoId: 'Mm39nVbU1NM',
+              loop: 1,
+              showinfo: false,
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+        }
+        // autoplay video
+        function onPlayerReady(event) {
+            // event.target.playVideo();
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {   
+         if(event.data === 0) {            
+            Reveal.next();
+         }     
+        }
