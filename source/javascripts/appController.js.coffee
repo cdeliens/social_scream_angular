@@ -13,13 +13,13 @@ app.factory "Scream", ($q, $http) ->
     deferred.promise
 
 @AppCtrl = ($scope, Scream) ->
-  $scope.tags = ["25este", "elsteinvorth", "hubasilica", "costarica", "aquinohaynieve"]
+  $scope.tags = ["25este", "elsteinvorth", "hubasilica"]
   $scope.tag = "25este"
   reload_marquee = ->
     $scope.marquee_messages = [
       {
         id: 1
-        text: "#25este WALL"
+        text: "3er Aniversario 25este.com - Huba & Silica - Manu Solano - Nochi - Lippa - Prestinary - Santini"
       },
       {
         id: 2
